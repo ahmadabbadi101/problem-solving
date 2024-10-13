@@ -4,7 +4,7 @@
 using namespace std;
 
 int n;
-
+int digits[7];
 int dp[1000001];
 int subNumber(int x)
 {
@@ -15,7 +15,7 @@ int subNumber(int x)
     
     int i=0;
     int temp=x;
-    int digits[7];
+    
     while(temp!=0)
     {
         digits[i]=temp%10;
