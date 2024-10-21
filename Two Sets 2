@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+using ll= long long;
+
+int main() {
+    int n;
+    cin>>n;
+    int s= (n*(n+1))/2;
+    
+    if (s%2==1)
+    {
+        cout<<0<<endl;
+        return 0;
+    }
+    
+    s/=2;
+    const int mod = 1e9 + 7;
+    const int inv2_mod = ((mod+1)/2);
+    vector<int> dp(s+1);
+    vector<int> ndp(s+1);
+    
+    dp[0] = 1;
+    for(int i=n;i>=1;i--)
+    {
+        for(int j=0;j<=s;j++)
+        {
+            ndp[j] = dp[j];
+            if(j-i>=0) (ndp[j] += dp[j-i]) %= mod;
+        }
+        swap(dp,ndp);
+
+    }
+    cout<<1ll* dp[s] *inv2_mod % mod<<endl;
+    return 0;
+}
